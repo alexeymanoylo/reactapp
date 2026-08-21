@@ -1,6 +1,7 @@
 import './App.css'
 import {useState} from "react";
 import { ProductCard } from './components/ProductCard'
+import {Cart} from "./practice/Cart.jsx";
 
 function App() {
     const [cart,setCart] = useState([])
@@ -31,6 +32,8 @@ function App() {
                     ))
                 }
             </section>
+
+            <Cart/>
         </div>
     )
 }
