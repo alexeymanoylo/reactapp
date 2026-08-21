@@ -1,10 +1,6 @@
 import './App.css'
 import {useState} from "react";
-import {Greeting} from "./practice/Greeting.jsx";
-import {ItemList} from "./practice/ItemList.jsx";
-import {Tabs} from "./practice/Tabs.jsx";
-import {CounterBadge} from "./practice/CounterBadge.jsx";
-import {Notification} from "./practice/Notification.jsx";
+import {LiveInput} from "./practice/LiveInput.jsx";
 
 function App() {
     const [cart,setCart] = useState([])
@@ -15,7 +11,7 @@ function App() {
 
     return (
         <div className="shop">
-            <Notification/>
+            <LiveInput/>
         </div>
     )
 }

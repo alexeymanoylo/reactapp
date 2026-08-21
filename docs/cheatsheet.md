@@ -122,9 +122,37 @@
 
 ---
 
+## Тема 7. Формы и контролируемые инпуты
+
+- **Контролируемый инпут** — значение хранится в состоянии (`useState`), а не в DOM.
+  Меняем состояние через `onChange`, показываем через `value={...}`:
+  ```jsx
+  const [value, setValue] = useState('')
+  <input value={value} onChange={e => setValue(e.target.value)} />
+  ```
+  `e.target.value` — текст, набранный в поле.
+- **Форма и отправка:** `<form onSubmit={handleSubmit}>`. В обработчике обязательно
+  `e.preventDefault()`, иначе страница перезагрузится:
+  ```jsx
+  function handleSubmit(e) {
+    e.preventDefault()
+    // что-то делаем с value
+  }
+  ```
+- **Несколько полей:** либо отдельный `useState` на каждое, либо один объект
+  `useState({ title: '', price: '' })` (обновляем через spread:
+  `setValue({ ...value, title: e.target.value })`).
+- **Подводные камни:**
+  - Забыл `value={...}` → инпут «неконтролируемый», не обновляется от состояния.
+  - Забыл `onChange` → React warning, инпут становится read-only.
+  - В `onChange` пиши `setValue(e.target.value)`, а не `setValue(e)` (нужен `.value`).
+  - В `onSubmit` не забудь `e.preventDefault()`.
+- **Где в витрине:** поиск товара (инпут + фильтрация списка), форма добавления товара.
+
+---
+
 ## Что дальше
 
 Следующие темы (пока НЕ заполн, добавлю после прохождения):
-- Тема 7. Формы и контролируемые инпуты
 - Тема 8. Подъём состояния
 - … (см. «Список тем» в `study-log.md`)
