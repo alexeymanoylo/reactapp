@@ -1,6 +1,5 @@
 import './App.css'
 import {useState} from "react";
-import {LiveInput} from "./practice/LiveInput.jsx";
 
 function App() {
     const [cart,setCart] = useState([])
@@ -11,7 +10,7 @@ function App() {
 
     return (
         <div className="shop">
-            <LiveInput/>
+            123123
         </div>
     )
 }
