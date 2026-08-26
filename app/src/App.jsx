@@ -1,16 +1,12 @@
 import './App.css'
-import {useState} from "react";
+import {UserForm} from "./practice/UserForm.jsx";
+import {AddProduct} from "./practice/AddProduct.jsx";
 
 function App() {
-    const [cart,setCart] = useState([])
-
-    const addToCart= (title, price) => {
-        setCart([...cart, {title, price}])
-    }
 
     return (
         <div className="shop">
-            123123
+            <AddProduct/>
         </div>
     )
 }
