@@ -1,12 +1,11 @@
 import './App.css'
-import {UserForm} from "./practice/UserForm.jsx";
-import {AddProduct} from "./practice/AddProduct.jsx";
+import {SearchList} from "./practice/SearchList.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <AddProduct/>
+            <SearchList/>
         </div>
     )
 }
