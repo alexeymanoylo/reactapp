@@ -1,12 +1,11 @@
 import './App.css'
-import {SearchList} from "./practice/SearchList.jsx";
-import {ProductCatalog} from "./practice/ProductCatalog.jsx";
+import {LiftedCounter} from "./practice/LiftedCounter.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <ProductCatalog/>
+            <LiftedCounter/>
         </div>
     )
 }
