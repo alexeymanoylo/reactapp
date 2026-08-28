@@ -1,12 +1,12 @@
 import './App.css'
-import {LiftedName} from "./practice/LiftedName.jsx";
-import {LiftedActions} from "./practice/LiftedActions.jsx";
+
+import {ProductCard} from "./petprojects/productcard/ProductCard.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <LiftedActions/>
+            <ProductCard/>
         </div>
     )
 }

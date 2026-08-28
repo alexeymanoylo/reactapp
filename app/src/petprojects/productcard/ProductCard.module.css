@@ -1,0 +1,151 @@
+:root {
+    --grey-text: #909090;
+    --btn-color: #FFB410;
+}
+
+body {
+    background: #E5E5E5;
+    padding: 10px;
+}
+
+.card {
+    padding: 16px;
+    border-radius: 25px;
+    background: #fff;
+    max-width: 380px;
+    margin-inline: auto;
+    color: #000;
+}
+
+.image {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.image img {
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.favorite {
+    position: absolute;
+    padding: 0;
+    background: none;
+    border: none;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.favorite svg {
+    vertical-align: top;
+}
+
+.favorite--active {
+    color: red;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.feature {
+    margin-bottom: 16px;
+}
+
+.feature__title {
+    color: var(--grey-text);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.sizes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sizes__item {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #000;
+    background: #fff;
+    font-size: 15px;
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.sizes__item--active:before {
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sizes__item--active,
+.sizes__item:hover {
+    background: #000;
+    color: #fff;
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 32px;
+    background: var(--btn-color);
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background: color-mix(in srgb, var(--btn-color) 85%, #fff);
+}
+
+.colors {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.colors__item {
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+.colors__item--active {
+    position: relative;
+    border: 1px solid #000;
+    transform: scale(1.176);
+    z-index: 10;
+}
