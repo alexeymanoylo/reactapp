@@ -7,7 +7,7 @@ export function CartDrawer ({cart, onClose, onRemoveFromCart}) {
         <>
             <aside className={s.cart}>
                 <button type="button" onClick={onClose} className={s.cart__close}>x</button>
-                {/*<pre>{JSON.stringify(cart, null, 2)}</pre>*/}
+                <pre>{JSON.stringify(cart, null, 2)}</pre>
                 <h2>Product cart</h2>
                 {cart.length === 0
                     ? <p>Cart is empty</p>
