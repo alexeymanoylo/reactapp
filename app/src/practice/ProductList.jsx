@@ -7,10 +7,12 @@ export function ProductList () {
     ])
 
     function addItem() {
+        // Добавление через spread — новый массив (не push!)
         setItems([...items, {id: items.length + 1, name: "New Product"}])
     }
 
     function removeItem(id) {
+        // Удаление через filter — новый массив без элемента (не splice!)
         setItems(items.filter(item => item.id !== id))
     }
 
@@ -18,6 +20,7 @@ export function ProductList () {
         <>
             <button type="button" onClick={addItem}>Add Product</button>
             <ul>
+                {/* .map + key; стрелка-обёртка, т.к. передаём item.id в removeItem */}
                 {items.map(item => (
                     <li key={item.id}>
                         {item.name}

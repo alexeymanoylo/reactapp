@@ -1,12 +1,11 @@
 import './App.css'
-
-import {ProductCard} from "./petprojects/productcard/ProductCard.jsx";
+import {Store} from "./petprojects/shop/Store.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <ProductCard/>
+            <Store/>
         </div>
     )
 }

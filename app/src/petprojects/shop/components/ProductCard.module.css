@@ -1,13 +1,3 @@
-:root {
-    --grey-text: #909090;
-    --btn-color: #FFB410;
-}
-
-body {
-    background: #E5E5E5;
-    padding: 10px;
-}
-
 .card {
     padding: 16px;
     border-radius: 25px;
@@ -139,8 +129,8 @@ body {
     width: 34px;
     height: 34px;
     border-radius: 100%;
-    border: none;
     cursor: pointer;
+    border: 1px solid #000;
 }
 
 .colors__item--active {

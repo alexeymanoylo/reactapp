@@ -1,11 +1,11 @@
-import {PRODUCT_DATA} from './ProductData.js';
 import s from './ProductCard.module.css'
 import {useState} from "react";
 
-export function ProductCard () {
+export function ProductCard ({product, onAddToCart}) {
+    const { id, title, price, sizes, colors, currency, rating } = product;
     const [isFavorite, setIsFavorite] = useState(false)
-    const [selectedSize, setSelectedSize] = useState('XL')
-    const [selectedColor, setSelectedColor] = useState(PRODUCT_DATA.colors[2])
+    const [selectedSize, setSelectedSize] = useState(sizes[0])
+    const [selectedColor, setSelectedColor] = useState(colors[0])
 
     return(
         <>
@@ -20,16 +20,16 @@ export function ProductCard () {
                         </svg>
                     </button>
                 </div>
-                <div className={s.title}>{PRODUCT_DATA.title}</div>
+                <div className={s.title}>{title}</div>
                 <div className={s.info}>
-                    <div className={s.price}>{PRODUCT_DATA.currency}{PRODUCT_DATA.price}</div>
-                    <div className={s.rating}>{PRODUCT_DATA.rating}</div>
+                    <div className={s.price}>{currency}{price}</div>
+                    <div className={s.rating}>{rating}</div>
                 </div>
                 <div className={s.feature}>
                     <div className={s.feature__title}>Size</div>
 
                     <div className={s.sizes}>
-                        {PRODUCT_DATA.sizes.map((size, index) =>
+                        {sizes.map((size, index) =>
                             <button
                                 key={index}
                                 type="button"
@@ -42,7 +42,7 @@ export function ProductCard () {
                 <div className={s.feature}>
                     <div className={s.feature__title}>Color</div>
                     <div className={s.colors}>
-                        {PRODUCT_DATA.colors.map((color, index) =>
+                        {colors.map((color, index) =>
                             <button
                                 key={index}
                                 type="button"
@@ -53,7 +53,15 @@ export function ProductCard () {
                         )}
                     </div>
                 </div>
-                <button type="button" className={s.btn}>Buy Now</button>
+                <button type="button" className={s.btn} onClick={() => onAddToCart({
+                    id: id,
+                    title: title,
+                    price: price,
+                    currency: currency,
+                    size: selectedSize,
+                    color: selectedColor.id,
+                    img: selectedColor.img
+                })}>Buy Now</button>
             </div>
         </>
     )
