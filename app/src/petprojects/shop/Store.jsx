@@ -3,14 +3,19 @@ import {PRODUCTS_LIST} from './data/Products.js'
 import {ProductCard} from './components/ProductCard.jsx';
 import s from './Store.module.css'
 import {CartDrawer} from "./components/CartDrawer.jsx";
+import {SearchBar} from "./components/SearchBar.jsx";
 
 
 export function Store () {
     const [cart, setCart] = useState([])
     const [isCartOpen, setIsCartOpen] = useState(false)
+    const [search, setSearch] = useState('')
 
     const addToCart = (item) => setCart([...cart, {...item, cartItemId:crypto.randomUUID()}])
     const removeFromCart = (id) => setCart(cart.filter(item => item.cartItemId !== id))
+    const filtered = PRODUCTS_LIST.filter(p =>
+        p.title.toLowerCase().includes(search.toLowerCase())
+    )
 
     return (
         <>
@@ -19,13 +24,24 @@ export function Store () {
                 <button className={s.cart__btn} onClick={() => setIsCartOpen(!isCartOpen)}>🛒 Cart ({cart.length})</button>
             </header>
 
-            {isCartOpen && <CartDrawer cart={cart} onRemoveFromCart={removeFromCart} onClose={() => setIsCartOpen(false)}/>}
+            <div className={s.container}>
+                <SearchBar search={search} onSearch={e => setSearch(e.target.value)} onClear={() => setSearch('')}/>
 
-            <main className={s.catalog}>
-                {PRODUCTS_LIST.map(product =>
-                    <ProductCard key={product.id} product={product} onAddToCart={addToCart}/>
-                )}
-            </main>
+                {isCartOpen && <CartDrawer cart={cart} onRemoveFromCart={removeFromCart} onClose={() => setIsCartOpen(false)}/>}
+
+                <div className={s.catalog__panel}>
+                    <h2>Catalog</h2>
+                    <div className={s.catalog__count}>Products: {filtered.length}</div>
+                </div>
+                <main className={s.catalog}>
+                    {filtered.length === 0
+                        ? <p>No products found</p>
+                        : filtered.map(product =>
+                            <ProductCard key={product.id} product={product} onAddToCart={addToCart}/>
+                        )
+                    }
+                </main>
+            </div>
         </>
     )
 }

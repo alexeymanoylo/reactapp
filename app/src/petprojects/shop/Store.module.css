@@ -1,6 +1,7 @@
 :root {
     --grey-text: #909090;
     --btn-color: #FFB410;
+    --border-color: #ddd;
 }
 
 * {
@@ -10,16 +11,30 @@
 body {
     padding: 0;
     margin: 0;
-    background: #E5E5E5;
+    background: #f9fafb;
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-bottom: 50px;
 }
 
 .catalog {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1200px;
-    margin-inline: auto;
-    padding-bottom: 50px;
+}
+
+.catalog__panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.catalog__panel h2 {
+    margin: 0;
 }
 
 .header {
@@ -27,7 +42,7 @@ body {
     align-items: center;
     padding: 20px;
     justify-content: space-between;
-    border-bottom: 1px solid #909090;
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 20px;
     background: #fff;
     position: sticky;

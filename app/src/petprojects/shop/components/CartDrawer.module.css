@@ -1,11 +1,11 @@
 .cart {
     position: fixed;
     background: #fff;
-    top: 0;
+    top: 62px;
     right: 0;
     bottom: 0;
     z-index: 5;
-    border-left: 1px solid #909090;
+    border-left: 1px solid var(--border-color);
     padding: 20px;
     width: 300px;
     transition: transform 0.2s ease-in-out;
@@ -13,6 +13,10 @@
     animation: cartIn 0.2s ease-in-out forwards;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.info {
+    font-size: 14px;
 }
 
 @keyframes cartIn {
@@ -46,6 +50,7 @@
 .product {
     display: flex;
     gap: 10px;
+    margin-bottom: 12px;
 }
 
 .remove {
