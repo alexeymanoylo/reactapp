@@ -1,8 +1,8 @@
 import s from './ProductCard.module.css'
 import {useState} from "react";
 
-export function ProductCard ({product, onAddToCart}) {
-    const { id, title, price, sizes, colors, currency, rating } = product;
+export function ProductCard ({product, onAddToCart, onOpen}) {
+    const { id, title, price, sizes, colors, currency, rating, description } = product;
     const [isFavorite, setIsFavorite] = useState(false)
     const [selectedSize, setSelectedSize] = useState(sizes[0])
     const [selectedColor, setSelectedColor] = useState(colors[0])
@@ -53,15 +53,28 @@ export function ProductCard ({product, onAddToCart}) {
                         )}
                     </div>
                 </div>
-                <button type="button" className={s.btn} onClick={() => onAddToCart({
-                    id: id,
-                    title: title,
-                    price: price,
-                    currency: currency,
-                    size: selectedSize,
-                    color: selectedColor.id,
-                    img: selectedColor.img
-                })}>Buy Now</button>
+                <div className={s.actions}>
+                    <button type="button" className={s.btn__details} onClick={() => onOpen({
+                        id: id,
+                        title: title,
+                        price: price,
+                        currency: currency,
+                        size: selectedSize,
+                        color: selectedColor.id,
+                        img: selectedColor.img,
+                        description: description
+                    })}>Details</button>
+                    <button type="button" className={s.btn} onClick={() => onAddToCart({
+                        id: id,
+                        title: title,
+                        price: price,
+                        currency: currency,
+                        size: selectedSize,
+                        color: selectedColor.id,
+                        img: selectedColor.img
+                    })}>Buy Now</button>
+                </div>
+
             </div>
         </>
     )
