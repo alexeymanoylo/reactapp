@@ -356,8 +356,8 @@
 - Задачи (план, 5 шт., самостоятельно, ТЗ словами, англоязычные лейблы):
    1. ✅ 2026-08-30 — `Stopwatch.jsx`: `useState`+`useEffect` с `[]` и функциональным апдейтером `setSeconds(s => s+1)`, cleanup `clearInterval(id)`; после ревью исправлен stale-closure (было `seconds+1` + зависимость `[seconds]` — интервал пересоздавался каждую секунду). oxlint 0.
    2. ✅ 2026-08-30 — `LiveTitle.jsx`: контролируемый инпут (`value`/`onChange`) + `useEffect` с `[text]`, меняющий `document.title` при каждом вводе (связка Тем 7+9). oxlint 0.
-   3. ⬜ слушатель события + cleanup (`resize`) — план.
-   4. ⬜ несколько зависимостей `[a,b]` — план.
+   3. ✅ 2026-08-30 — `WindowWidth.jsx`: `useEffect` с `[]` навешивает `resize`-слушатель и снимает его в `return` той же функцией `onResize` (закреплён cleanup слушателя). oxlint 0.
+   4. ✅ 2026-08-30 — `FullName.jsx`: два состояния `first`/`last` + `useEffect` с `[first, last]`, меняющий `document.title` при изменении любого из них. oxlint 0.
    5. ⬜ перезапуск эффекта по смене пропса (`delay`) — план.
 - Контрольная работа: ⬜ план
 - Заметки: —

@@ -1,11 +1,11 @@
 import './App.css'
-import {LiveTitle} from "./practice/LiveTitle.jsx";
+import {FullName} from "./practice/FullName.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <LiveTitle/>
+            <FullName/>
         </div>
     )
 }
