@@ -1,5 +1,5 @@
 import './App.css'
-import {CountdownTimer} from "./practice/CountdownTimer.jsx";
+import {CountdownTimer} from "./practice/05-useeffect/CountdownTimer.jsx";
 
 function App() {
 

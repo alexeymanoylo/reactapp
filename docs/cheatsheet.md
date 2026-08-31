@@ -6,6 +6,18 @@
 
 ---
 
+## Навигация по папкам `practice/`
+
+Учебные примеры разложены по папкам в `app/src/practice/`, по одной на тему:
+
+- [01-state](../app/src/practice/01-state/) — `useState`: счётчики, тогглы, бейджи, уведомления, показать/скрыть.
+- [02-lists](../app/src/practice/02-lists/) — списки и массивы: `.map`, `filter`, `key`, удаление/переключение.
+- [03-forms](../app/src/practice/03-forms/) — контролируемые инпуты и формы (`onChange`, `onSubmit`, `preventDefault`).
+- [04-lifted-state](../app/src/practice/04-lifted-state/) — подъём состояния: пропсы вниз, колбэки вверх.
+- [05-useeffect](../app/src/practice/05-useeffect/) — `useEffect`: таймеры, `document.title`, слушатель `resize`.
+
+Файл может относиться к нескольким темам — ищи его по ссылкам в нужном разделе ниже.
+
 ## Тема 1. JSX
 
 - `class` в JSX → **`className`** (атрибут `class` зарезервирован в JS).
@@ -97,14 +109,14 @@
   Никогда не `push` / `splice` напрямую — это мутация, React не увидит.
 - **Поиск по списку** (например, поиск товаров) = `filter` по полю + `toLowerCase()` с обеих
   сторон (без учёта регистра). Примеры в коде:
-  [SearchList.jsx](../app/src/practice/SearchList.jsx),
-  [ProductCatalog.jsx](../app/src/practice/ProductCatalog.jsx).
+  [SearchList.jsx](../app/src/practice/02-lists/SearchList.jsx),
+  [ProductCatalog.jsx](../app/src/practice/02-lists/ProductCatalog.jsx).
 - Другие примеры на массивы:
-  [ItemList.jsx](../app/src/practice/ItemList.jsx),
-  [FruitList.jsx](../app/src/practice/FruitList.jsx),
-  [RemoveList.jsx](../app/src/practice/RemoveList.jsx),
-  [ToggleList.jsx](../app/src/practice/ToggleList.jsx),
-  [SummaryList.jsx](../app/src/practice/SummaryList.jsx).
+  [ItemList.jsx](../app/src/practice/02-lists/ItemList.jsx),
+  [FruitList.jsx](../app/src/practice/02-lists/FruitList.jsx),
+  [RemoveList.jsx](../app/src/practice/02-lists/RemoveList.jsx),
+  [ToggleList.jsx](../app/src/practice/02-lists/ToggleList.jsx),
+  [SummaryList.jsx](../app/src/practice/02-lists/SummaryList.jsx).
 
 ---
 
@@ -159,10 +171,10 @@
   - В `onSubmit` не забудь `e.preventDefault()`.
 - **Где в витрине:** поиск товара (инпут + фильтрация списка), форма добавления товара.
 - Примеры в коде:
-  [UserForm.jsx](../app/src/practice/UserForm.jsx),
-  [NameForm.jsx](../app/src/practice/NameForm.jsx),
-  [AddProduct.jsx](../app/src/practice/AddProduct.jsx),
-  [SubmitForm.jsx](../app/src/practice/SubmitForm.jsx).
+  [UserForm.jsx](../app/src/practice/03-forms/UserForm.jsx),
+  [NameForm.jsx](../app/src/practice/03-forms/NameForm.jsx),
+  [AddProduct.jsx](../app/src/practice/03-forms/AddProduct.jsx),
+  [SubmitForm.jsx](../app/src/practice/03-forms/SubmitForm.jsx).
 
 ---
 
@@ -257,8 +269,8 @@ useEffect(() => {
   снова → … Всегда указывай зависимости.
 
 Примеры в коде:
-[Clock.jsx](../app/src/practice/Clock.jsx),
-[TabTitle.jsx](../app/src/practice/TabTitle.jsx).
+[Clock.jsx](../app/src/practice/05-useeffect/Clock.jsx),
+[TabTitle.jsx](../app/src/practice/05-useeffect/TabTitle.jsx).
 
 ---
 
@@ -323,11 +335,11 @@ useEffect(() => {
 Любой «подъём состояния» — это просто этот алгоритм. `cart` в витрине, `count` в счётчике, `name` в форме — везде одно и то же.
 
 Примеры в коде (подъём состояния):
-[LiftedCounter.jsx](../app/src/practice/LiftedCounter.jsx),
-[LiftedName.jsx](../app/src/practice/LiftedName.jsx),
-[LiftedActions.jsx](../app/src/practice/LiftedActions.jsx),
-[LiftedList.jsx](../app/src/practice/LiftedList.jsx) (намеренно «недоделан» — ищи обрыв связи),
-[Cart.jsx](../app/src/practice/Cart.jsx).
+[LiftedCounter.jsx](../app/src/practice/04-lifted-state/LiftedCounter.jsx),
+[LiftedName.jsx](../app/src/practice/04-lifted-state/LiftedName.jsx),
+[LiftedActions.jsx](../app/src/practice/04-lifted-state/LiftedActions.jsx),
+[LiftedList.jsx](../app/src/practice/04-lifted-state/LiftedList.jsx) (намеренно «недоделан» — ищи обрыв связи),
+[Cart.jsx](../app/src/practice/04-lifted-state/Cart.jsx).
 
 **Про параметры (откуда берётся `item`/`e`):** имя в скобках функции — это **параметр**, «пустое место под данные». Значение подставляется в момент вызова. `addToCart = (item) => ...` — `item` наполняется тем объектом, который передали при вызове (`onAddToCart({ id, title, ... })`). То же самое с `e` в обработчиках: React сам кладёт событие в `e` при клике. Имя параметра произвольное.
 
@@ -361,13 +373,13 @@ useEffect(() => {
 Запомни: 90% «магии» React — это три вопроса выше + две привычки. Остальное (эффекты, контекст, роутинг) — надстройки, а фундамент именно такой. Если работает — значит, поток данных замкнулся: данные вниз, событие вверх.
 
 Базовые примеры (счётчики, переключатели, бейджи, табы, уведомления):
-[Counter.jsx](../app/src/practice/Counter.jsx), [Toggle.jsx](../app/src/practice/Toggle.jsx),
-[ShowHide.jsx](../app/src/practice/ShowHide.jsx), [LiveInput.jsx](../app/src/practice/LiveInput.jsx),
-[LikeButton.jsx](../app/src/practice/LikeButton.jsx), [Greeting.jsx](../app/src/practice/Greeting.jsx),
-[StepCounter.jsx](../app/src/practice/StepCounter.jsx), [ResetCounter.jsx](../app/src/practice/ResetCounter.jsx),
-[SafeCounter.jsx](../app/src/practice/SafeCounter.jsx), [CounterBadge.jsx](../app/src/practice/CounterBadge.jsx),
-[Tabs.jsx](../app/src/practice/Tabs.jsx), [ToggleText.jsx](../app/src/practice/ToggleText.jsx),
-[Notification.jsx](../app/src/practice/Notification.jsx), [ProductList.jsx](../app/src/practice/ProductList.jsx).
+[Counter.jsx](../app/src/practice/01-state/Counter.jsx), [Toggle.jsx](../app/src/practice/01-state/Toggle.jsx),
+[ShowHide.jsx](../app/src/practice/01-state/ShowHide.jsx), [LiveInput.jsx](../app/src/practice/03-forms/LiveInput.jsx),
+[LikeButton.jsx](../app/src/practice/01-state/LikeButton.jsx), [Greeting.jsx](../app/src/practice/01-state/Greeting.jsx),
+[StepCounter.jsx](../app/src/practice/01-state/StepCounter.jsx), [ResetCounter.jsx](../app/src/practice/01-state/ResetCounter.jsx),
+[SafeCounter.jsx](../app/src/practice/01-state/SafeCounter.jsx), [CounterBadge.jsx](../app/src/practice/01-state/CounterBadge.jsx),
+[Tabs.jsx](../app/src/practice/01-state/Tabs.jsx), [ToggleText.jsx](../app/src/practice/01-state/ToggleText.jsx),
+[Notification.jsx](../app/src/practice/01-state/Notification.jsx), [ProductList.jsx](../app/src/practice/02-lists/ProductList.jsx).
 
 ## Что дальше
 
