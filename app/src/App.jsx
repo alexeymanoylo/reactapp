@@ -1,11 +1,11 @@
 import './App.css'
-import {FullName} from "./practice/FullName.jsx";
+import {CountdownTimer} from "./practice/CountdownTimer.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <FullName/>
+            <CountdownTimer/>
         </div>
     )
 }
