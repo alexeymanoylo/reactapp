@@ -1,12 +1,11 @@
 import './App.css'
-import {Store} from "./petprojects/shop/Store.jsx";
-import {TabTitle} from "./practice/TabTitle.jsx";
+import {LiveTitle} from "./practice/LiveTitle.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <TabTitle/>
+            <LiveTitle/>
         </div>
     )
 }
