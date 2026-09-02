@@ -1,11 +1,11 @@
 import './App.css'
-import {CountdownTimer} from "./practice/05-useeffect/CountdownTimer.jsx";
+import {ProductCatalog} from "./practice/06-data/ProductCatalog.jsx";
 
 function App() {
 
     return (
         <div className="shop">
-            <CountdownTimer/>
+            <ProductCatalog/>
         </div>
     )
 }

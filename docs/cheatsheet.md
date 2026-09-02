@@ -15,6 +15,7 @@
 - [03-forms](../app/src/practice/03-forms/) — контролируемые инпуты и формы (`onChange`, `onSubmit`, `preventDefault`).
 - [04-lifted-state](../app/src/practice/04-lifted-state/) — подъём состояния: пропсы вниз, колбэки вверх.
 - [05-useeffect](../app/src/practice/05-useeffect/) — `useEffect`: таймеры, `document.title`, слушатель `resize`.
+- [06-data](../app/src/practice/06-data/) — загрузка данных: `fetch`/async, `loading`/`error`, `AbortController`.
 
 Файл может относиться к нескольким темам — ищи его по ссылкам в нужном разделе ниже.
 
@@ -274,6 +275,57 @@ useEffect(() => {
 
 ---
 
+## Тема 10. Загрузка данных (`fetch` / async)
+
+Данные теперь приходят **извне** (с сервера/API), а не лежат в `useState` заранее. React
+сам их не грузит — за нас `fetch` (или `axios`), а `useEffect` говорит: «когда смонтировался —
+пойди загрузи».
+
+- **Три состояния вместо одного:** `data` (сами данные), `loading` (идёт загрузка),
+  `error` (текст ошибки, `null` = ок). Пока `loading` — показываем «Loading…» вместо пустоты.
+- **`useEffect` НЕЛЬЗЯ делать `async`.** Пишем `async function load(){...}; load()` ВНУТРИ эффекта
+  (эффект должен вернуть либо очистку, либо ничего, а `async` возвращает Promise).
+- **`fetch` молчит на 404/500** — сам не кидает ошибку. Проверяем вручную: `if (!res.ok) throw`.
+- **Базовый скелет** (он же «паттерн загрузки», повторяется во всех примерах):
+  ```jsx
+  useEffect(() => {
+    const controller = new AbortController()       // «стоп» для запроса
+    async function load() {
+      setLoading(true)
+      try {
+        const res = await fetch(url, { signal: controller.signal })
+        if (!res.ok) throw new Error('HTTP ' + res.status)
+        setData(await res.json())
+      } catch (err) {
+        if (err.name !== 'AbortError') setError(err.message)
+      } finally {
+        setLoading(false)                          // гасим ВСЕГДА
+      }
+    }
+    load()
+    return () => controller.abort()                // очистка при уходе (Тема 9)
+  }, [])                                           // [] — один раз при монтаже
+  ```
+- **`AbortController`** — отменяет «висящий» запрос, если компонент ушёл до ответа (иначе
+  `setState` на мёртвом компоненте → утечка/warning). `AbortError` в `catch` игнорируем.
+- **Зависимости:** `[ ]` — грузим раз при старте; `[id]` — перезагружаем при смене `id`
+  (например, кнопки Next/Prev грузят разный пост).
+- **Подводные камни:**
+  - Рисовать данные до загрузки: `post.title` при `post === null` → краш. Всегда гвард
+    `!loading && !error && data && (...)`.
+  - Неверное имя поля API (`name` vs `title`) → `undefined` → краш в `.map`/`.filter`. Сверяй
+    реальный ответ (`console.log`).
+  - Забыть `await` у `fetch`/`res.json()` → работаешь с Promise, а не с данными.
+
+Примеры в коде (папка `06-data`):
+[FetchUsers.jsx](../app/src/practice/06-data/FetchUsers.jsx),
+[PostList.jsx](../app/src/practice/06-data/PostList.jsx),
+[PostById.jsx](../app/src/practice/06-data/PostById.jsx),
+[UserSearch.jsx](../app/src/practice/06-data/UserSearch.jsx),
+[ProductCatalog.jsx](../app/src/practice/06-data/ProductCatalog.jsx).
+
+---
+
 ## Синтаксис: круглые `()` против фигурных `{}`
 
 Самая частая путаница новичка. Это две разные вещи.
@@ -383,7 +435,7 @@ useEffect(() => {
 
 ## Что дальше
 
-Темы 1–9 разобраны выше. Следующие (пока НЕ заполнены, добавлю после прохождения):
-- Тема 10. Загрузка данных (`fetch`/async в `useEffect`)
+Темы 1–10 разобраны выше. Следующие (пока НЕ заполнены, добавлю после прохождения):
 - Тема 11. `useContext`
+- Тема 12. `useRef` и неконтролируемые инпуты
 - … (см. «Список тем» в `study-log.md`)
